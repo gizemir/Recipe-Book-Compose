@@ -56,4 +56,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //NAVIGATION
+    val nav_version = "2.8.9"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    //GSON (navigasyonda sayfalar arası geçişte veri aktarımı için
+    implementation ("com.google.code.gson:gson:2.12.1")
 }
+

@@ -18,11 +18,14 @@ import com.gizemir.recipebookcompose.ui.theme.RecipeBookComposeTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.google.gson.Gson
 
 
 @Composable
 //Listenin tamamı
-fun RecipeList(recipes: List<Recipe>) {
+//recipeList'in olduğu her yerde navController istememiz gerek, çünkü recipeList'i navigasyonda kullandık
+fun RecipeList(recipes: List<Recipe>, navController: NavController) {
     //LISTE
     LazyColumn(contentPadding =  PaddingValues(10.dp),
         modifier = Modifier.fillMaxSize()
@@ -31,7 +34,7 @@ fun RecipeList(recipes: List<Recipe>) {
               .background(color= MaterialTheme.colorScheme.primary)
     ) {
         items(recipes){
-            RecipeRow(recipe = it)
+            RecipeRow(recipe = it, navController = navController)
         }
 
     }
@@ -39,11 +42,14 @@ fun RecipeList(recipes: List<Recipe>) {
 
 @Composable
 //Listenin her bir elemanını tasarlıyoruz (, xml'deki item_row gibi)
-fun RecipeRow(recipe: Recipe) {
+fun RecipeRow(recipe: Recipe, navController: NavController) {
     Column (modifier = Modifier.fillMaxWidth()
         .background(color= MaterialTheme.colorScheme.background)
         .clickable {
             //listenin elemanlarına tıklandığında ne olacak(NAVIGASYON)
+            navController.navigate("detail screen/${Gson().toJson(recipe)}")
+            //tıklandığında detail screen composable'ına gider(nav host içeriisnde)
+            //${recipe} ile detay ekranına recipe modelini gönderdik argüman gibi
 
         }){
             Text(recipe.name,

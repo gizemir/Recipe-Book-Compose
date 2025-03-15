@@ -51,7 +51,7 @@ fun DetailScreen(recipe: Recipe) {
         }
     }
 }
-
+/*
 @Preview(showBackground = true)
 @Composable
 fun DetailPreview() {
@@ -67,4 +67,4 @@ fun DetailPreview() {
     }
 
 
-}
+}*/
